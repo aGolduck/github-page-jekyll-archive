@@ -4,9 +4,9 @@ date: 2019-06-10
 tags: [mysql]
 ---
 
-In MySQL, `DISTINCT` can be replaced by `GROUP BY` in principle.
+在 MySQL 里面, `DISTINCT` 原则上可以用 `GROUP BY` 替换。
 
-`question` is a table used in our online mysql server. This is part of the structure of the table.
+比如以下的 `question` 表是我们实际生产数据一个表的简化。
 
 ```sql
 SHOW FULL COLUMNS FROM question;
@@ -27,7 +27,7 @@ SHOW INDEX FROM question;
 | question | 0           | PRIMARY   | 1              | id           | BTREE       |
 | question | 1           | type      | 1              | type         | BTREE       |
 
-Let's see results of `DISTINCT` and `GROUP BY` on `type`.
+我们来看看在 `type` 上做 `DISTINCT` 和 `GROUP BY` 操作的结果。
 
 ```sql
 SELECT DISTINCT type FROM question;
@@ -57,9 +57,9 @@ SELECT type FROM questiton GROUP BY type;
 | essay             |
 | material          |
 
-They are exactly the same.
+完全一样。
 
-So how MySQL works out these results. Let's `EXPLAIN`.
+MySQL 是怎么实现的呢. Let's `EXPLAIN`.
 
 ```sql
 EXPLAIN SELECT DISTINCT type FROM question;
@@ -77,9 +77,9 @@ EXPLAIN SELECT type FROM question GROUP BY type;
 |--- |------------ |-------- |----- |-------------- |---- |-------- |---- |---- |------------------------ |
 | 1  | SIMPLE       | question | range | type           | type | 1        | NULL | 16   | Using index for group-by |
 
-Interesting, the plan of `DISTINCT` query is using index for group-by. MySQL basically translates `DINSTINCT` query to `GROUP BY` query.
+有趣的是, `DISTINCT` 查询 is using index for group-by. MySQL 基本上把 `DINSTINCT` 翻译成了 `GROUP BY`.
 
-What about `score` of `question`. Let's explain first.
+如果是在 `score` 字段上呢？这次我们先 explain.
 
 ```sql
 EXPLAIN SELECT DISTINCT score FROM question;
@@ -97,7 +97,10 @@ EXPLAIN SELECT score FROM question GROUP BY score;
 |--- |------------ |-------- |---- |-------------- |---- |-------- |---- |----- |------------------------------- |
 | 1  | SIMPLE       | question | ALL  | NULL           | NULL | NULL     | NULL | 37424 | Using temporary; Using filesort |
 
-Without index, MySQL scans the whole table first, then `DISTINCT` or `GROUPBY`. But this time, `GROUP BY` uses filesort while `DISTINCT` not.
+在没有索引的情况下，MySQL 扫描全表，再作去重或 groupby. 不同的是，`GROUP BY` 使用了 `filesort` 而 `DISTINCT` 没有。
+
+这样使得 `GROUP BY` 的结果是有序的，而 `DISTINCT` 不是. 因为 MySQL 的 `GROUP BY` 默认是有序的。
+
 
 ```sql
 SELECT DISTINCT score FROM question;
@@ -147,6 +150,6 @@ SELECT score FROM question GROUP BY score;
 | 15.0  |
 | 18.0  |
 
-See, the result of `GROUP BY` is sorted while `DISTINCT` is not. This is because MySQL always uses `sort` to group rows.
+MySQL 的执行选择策略还是很复杂的，有没有索引影响的东西其实还是比较多的。
 
-So, yeah, the strategy to choose execute plan of MySQL is quite complicated.
+PS: 如果要强制 `GROUP BY` 不排序，使用 `group by # order by null`.
