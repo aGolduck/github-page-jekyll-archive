@@ -1,6 +1,6 @@
 ---
 title: koa-compose
-tags: [javascript, node]
+tags: [javascript, nodejs]
 ---
 
 ```js
