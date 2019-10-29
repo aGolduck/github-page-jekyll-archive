@@ -3,7 +3,7 @@ title: swagger 在 node 项目中的实践
 tags: [swagger, openapi, nodejs]
 ---
 
-Swagger, 现在也称 openapi, 定义了规范的 RESTFUL 接口文档标准，围绕这个标准产生了一个很丰富的(生态圈)[https://apis.guru/awesome-openapi3/]。本文谈谈在 node 项目中应用这些工具的一些经验。
+Swagger, 现在也称 openapi, 定义了规范的 RESTFUL 接口文档标准，围绕这个标准产生了一个很丰富的[生态圈](https://apis.guru/awesome-openapi3/)。本文谈谈在 node 项目中应用这些工具的一些经验。
 
 首先最基础的是 swagger 的文档功能。如何展示 swagger 文档？swagger-ui 已经不错，有以下的优点。
 
