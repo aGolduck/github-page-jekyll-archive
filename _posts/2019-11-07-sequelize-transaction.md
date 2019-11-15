@@ -150,6 +150,7 @@ try {
   await t.commit()
 } catch (error) {
   await t.rollback()
+}
 ```
 
 可以在[测试文件](https://github.com/sequelize/sequelize/blob/7a90df5cd009024493a306f9a1314d9cbfcb1176/test/integration/sequelize.test.js#L1425)里得到验证。尽管测试代码使用的是回调方式，但和上面的 async/await 示例没有本质区别。
@@ -280,7 +281,7 @@ await sequelize.transaction(async (t1) => {
     // With CLS enable, queries here will by default use t2
     // Pass in the `transaction` option to define/alter the transaction they belong to.
     await  Promise.all([
-        User.create({ name: 'Bob' }, { transaction: null }), // 不使事务
+        User.create({ name: 'Bob' }, { transaction: null }), // 不使用事务
         User.create({ name: 'Mallory' }, { transaction: t1 }), // 在事务 t1 中执行
         User.create({ name: 'John' }) // this would default to t2
     ]);
