@@ -2,10 +2,12 @@
 title: npm 安装同一个包的不同版本
 tags: [node, npm]
 ---
+## 应用场景
+不想升级老代码依赖
 
 npm 无法同时安装同一个 package 的不同版本，以往遇到这种需求的时候，我的办法是自己新建一个包，然后在新建的包里安装目标包的一个版本，然后暴露出去。这样，项目就可以依赖新建的包和另一个版本，实现同时依赖两个版本的目的。
 
-在 npm 6.9 以后，npm 可以为安装的包使用别名，可以近乎完美地解决这个问题了。`elasticsearch-js` 项目有[一段](https://github.com/elastic/elasticsearch-js#install-multiple-versions)详细说明如何使用，我把这一段翻译了一下。
+在 npm 6.9 以后，npm 可以为安装的包使用别名，可以近乎完美地解决这个问题了。`elasticsearch-js` 项目有[一段](https://github.com/elastic/elasticsearch-js/tree/v7.4.0#install-multiple-versions)详细说明如何使用，我把这一段翻译了一下。
 
 ## 同时使用多个版本
 如果你同时使用多个版本的 Elasticsearch, 你需要使用对应的多个客户端。同时安装同一个包的多个版本在以前是不可能的，但是 `npm 6.9` 以后，你可以用别名达到目的。

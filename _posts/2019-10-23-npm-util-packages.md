@@ -9,7 +9,7 @@ tags: [npm]
 
 
 | package                    | tags                | description                                   |
-|----------------------------|---------------------|-----------------------------------------------|
+|----------------------------+---------------------+-----------------------------------------------|
 | ajv                        | json-schema         | another json schema validator                 |
 | debug                      | debug,log           |                                               |
 | delay                      | timer               | aka, sleep                                    |
@@ -19,6 +19,7 @@ tags: [npm]
 | js-yaml                    | yaml,parser         | yaml parser and dumper                        |
 | json-schema-ref-parser     | json-schema, parser |                                               |
 | lerna                      | package             | monorepo                                      |
+| node-mock-stdin            | test                |                                               |
 | node-pool                  | pool                | generic resource pool with Promise based API. |
 | oas-kit                    | swagger,openapi     | converter, validator, linter, resolver        |
 | really-need                | package             | require utils                                 |

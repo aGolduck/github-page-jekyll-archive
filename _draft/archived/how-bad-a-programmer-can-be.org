@@ -1,0 +1,46 @@
+不知道箭头函数的 this 指向哪里
+
+没听过 RESTFUL
+
+不知道数据库存的是 UTC 时间：怎么会是凌晨五点呢？
+
+commit 用英文，主动宾介词分不清楚
+
+总是要用单词缩写做变量名
+
+schema 变量名小写开头
+
+用 count 而不是 findOne 查找是否有这条记录。
+
+频繁修改 API 响应的数据结构。
+
+觉得枚举类型麻烦，都用字符串。
+
+api 接口出错静默处理，不报错
+
+变量名：obj, arr, ele
+
+js const let 随意用
+
+magic number without comment
+
+universities 的单数是 universitie
+
+用了一个修改了全局数组 prototype 方法的包
+
+processe, hotsearche....
+
+没有 /api/v1, 有 /api/v2
+
+contract -> constract
+
+#+begin_src js
+try {
+} catch (error) {
+   await sendToWarmHole(...)
+}
+#+end_src
+
+把 PDF 用 base64 存成 mongo 的一个字段。。。
+
+从数据库取出数据，手动 filter, 手动 count
